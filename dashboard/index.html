@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鍘熷瓙鍚?路 宸ヤ綔闈㈡澘</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --card-hover: #222633;
+    --accent: #6366f1;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+    --text: #e2e4e9;
+    --text-sub: #9ca3af;
+    --text-muted: #6b7280;
+    --border: #2a2d39;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --rose: #f43f5e;
+    --blue: #3b82f6;
+    --cyan: #06b6d4;
+    --purple: #a855f7;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  /* Hero */
+  .hero { text-align: center; margin-bottom: 60px; }
+  .hero-tag {
+    display: inline-block; background: var(--accent-glow); color: var(--accent);
+    padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.5px; margin-bottom: 16px;
+  }
+  .hero h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .hero .subtitle { color: var(--text-sub); font-size: 16px; }
+  .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 28px; }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-size: 28px; font-weight: 700; font-family: var(--font-mono); }
+  .hero-stat .num.green { color: var(--green); }
+  .hero-stat .num.amber { color: var(--amber); }
+  .hero-stat .num.blue { color: var(--blue); }
+  .hero-stat .label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 18px; font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::before {
+    content: ''; width: 4px; height: 18px; background: var(--accent);
+    border-radius: 2px; display: inline-block;
+  }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 11px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 24px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -26px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 2px solid var(--border); background: var(--bg);
+  }
+  .tl-dot.major { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+  .tl-dot.green { border-color: var(--green); background: var(--green); }
+  .tl-dot.amber { border-color: var(--amber); background: var(--amber); }
+  .tl-date { font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 2px; }
+  .tl-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .tl-desc { font-size: 13px; color: var(--text-sub); }
+  .tl-tag {
+    display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 4px;
+    margin-left: 6px; font-weight: 500;
+  }
+  .tl-tag.break { background: rgba(244, 63, 94, 0.12); color: var(--rose); }
+  .tl-tag.win { background: rgba(34, 197, 94, 0.12); color: var(--green); }
+  .tl-tag.learn { background: rgba(59, 130, 246, 0.12); color: var(--blue); }
+  .tl-tag.build { background: rgba(168, 85, 247, 0.12); color: var(--purple); }
+
+  /* Narrative Cards */
+  .narrative-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .narrative-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px; transition: background 0.2s;
+  }
+  .narrative-card:hover { background: var(--card-hover); }
+  .nc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .nc-icon { font-size: 24px; }
+  .nc-title { font-size: 15px; font-weight: 700; }
+  .nc-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .nc-desc { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+  .nc-quote { 
+    font-style: italic; color: var(--amber); font-size: 13px; margin-top: 10px;
+    padding-left: 12px; border-left: 2px solid var(--amber);
+  }
+
+  /* Projects */
+  .project-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px; transition: all 0.2s;
+  }
+  .project-card:hover { background: var(--card-hover); border-color: var(--accent); }
+  .pc-emoji { font-size: 28px; margin-bottom: 10px; }
+  .pc-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .pc-status { font-size: 11px; margin-bottom: 8px; }
+  .pc-status span {
+    display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 600;
+  }
+  .pc-status .hot { background: rgba(244, 63, 94, 0.1); color: var(--rose); }
+  .pc-status .live { background: rgba(34, 197, 94, 0.1); color: var(--green); }
+  .pc-status .wip { background: rgba(245, 158, 11, 0.1); color: var(--amber); }
+  .pc-desc { font-size: 12px; color: var(--text-sub); line-height: 1.6; }
+
+  /* Footer */
+  .footer { margin-top: 60px; text-align: center; }
+  .footer-inner {
+    display: inline-flex; gap: 24px; padding: 16px 32px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 40px;
+  }
+  .footer-link { font-size: 14px; color: var(--text-sub); text-decoration: none; }
+  .footer-link:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    .container { padding: 40px 16px 60px; }
+    .hero h1 { font-size: 26px; }
+    .hero-stats { gap: 20px; }
+    .narrative-grid { grid-template-columns: 1fr; }
+    .project-grid { grid-template-columns: 1fr; }
+    .timeline { padding-left: 24px; }
+    .tl-dot { left: -19px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-tag">馃敪 宸ヤ綔闈㈡澘</div>
+    <h1>鍘熷瓙鍚?/h1>
+    <p class="subtitle">闆呭拰璁捐宸ョ▼瀛﹂櫌 路 AI鏃犻檺鍙兘宸ヤ綔瀹?路 Datawhale鏉窞</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num green">10</div>
+        <div class="label">澶╁叧閿簨浠?/div>
+      </div>
+      <div class="hero-stat">
+        <div class="num amber">4</div>
+        <div class="label">鏉℃垚闀垮彊浜?/div>
+      </div>
+      <div class="hero-stat">
+        <div class="num blue">6</div>
+        <div class="label">涓椿璺冮」鐩?/div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Timeline -->
+  <section class="section">
+    <div class="section-title">馃搮 鏃堕棿绾?路 6/19 鈥?6/28</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot major"></div>
+        <div class="tl-date">6鏈?8鏃?路 鍛ㄦ棩</div>
+        <div class="tl-title">姹熶笢璋堝垽鍑嗗 + 鏁呬簨璁板綍鑰呮巿鏉?span class="tl-tag win">鍙欎簨</span></div>
+        <div class="tl-desc">涓嬪懆涓庡父闄€佸闄㈣€佸笀鍚屽幓瑙佹睙涓滅鐞嗗眬鎷涘晢涔旇壇鏂岃皥绌洪棿銆傚父闄㈡垬鐣ュ璇濈敤姣涢€夐噸鏋愨€斺€旇鎸佷箙鎴樼骇鍒殑鎸囧銆傛寮忔巿鏉僀ola涓烘晠浜嬭褰曡€咃紝鎵€鏈夋垚闀跨粡鍘嗗綊妗ｄ负鑷獟浣撶礌鏉愩€?/div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-date">6鏈?7鏃?路 鍛ㄥ叚</div>
+        <div class="tl-title">ListenHub鍏ㄦ妧鑳藉浠朵笂绾?span class="tl-tag build">鍩哄缓</span></div>
+        <div class="tl-desc">marswaveai/skills瀹夎锛?0涓瓙鎶€鑳斤紙鎾/瑙嗛/TTS/ASR/鍒涗綔锛夛紝API Key鎸佷箙鍖栥€傝亰澶╁鍑哄叏閲忓璁♀€斺€?6-01鑷?6-27鍏ㄩ儴褰掍綅銆?/div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot major"></div>
+        <div class="tl-date">6鏈?6鏃?路 鍛ㄤ簲</div>
+        <div class="tl-title">甯搁櫌38鍒嗛挓鎴樼暐鎽婄墝<span class="tl-tag win">鎴樼暐</span></div>
+        <div class="tl-desc">璺緞鐢婚€忥細绌洪棿鈫掑鍖栧櫒鈫掑钩鍙扳啋澶╀娇鎶曡祫銆傛牳蹇冿細涓嶅綋涔欐柟锛岀敤璧勬簮鎹㈣祫婧愩€備笁鏉″彲鐢ㄨ鍔ㄥ嵆鍒昏惤鍦般€傚悓鏃ユ櫄锛岃嚜鐧姐€屾墠鍗庣殑浜烘洿闇€瑕佷綆澶村鍟嗕笟銆佸鍋氫汉銆嶁€斺€斿晢涓氳閱掓椂鍒汇€傝皥鍒ゅ涔犱綋绯诲缓绔嬶紙3鏈功+姣忓懆鎻愰啋锛夈€?/div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot major"></div>
+        <div class="tl-date">6鏈?5鏃?路 鍛ㄥ洓</div>
+        <div class="tl-title">Datawhale鏉窞瀹炰範姝ｅ紡鑾锋壒<span class="tl-tag win">閲岀▼纰?/span></div>
+        <div class="tl-desc">鐢樺厓濂囪蛋鐗规壒锛?000鍏?鏈堬紝宀椾綅銆屽晢涓氳繍钀モ€斺€旈珮鏍＄敓鎬佸悎浣溿€嶃€傞€氱敤绠€鍘嗕笂绾縂itHub Pages銆傛寕鑱岃〃濉氦銆備粠6/19涓绘寔Datawhale娲诲姩鍒版鈥斺€斾綘鐢ㄤ竴涓槦鏈熸嬁涓嬩簡涓€寮犻棬绁ㄣ€?/div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-date">6鏈?4鏃?路 鍛ㄤ笁</div>
+        <div class="tl-title">鐢樺厓濂囬潰璋堬細38鍒嗛挓<span class="tl-tag win">闈㈣瘯</span></div>
+        <div class="tl-desc">浠庢寕鑱岃皟鐮斺啋Datawhale鎬婚儴瀹炰範锛屾柟鍚?80搴﹁浆鍚戙€傜涓€娆℃寮忓晢鍔¤皥鍒も€斺€旀姤8000锛岃鐮嶅埌6000銆傝皥鍒ゅ鐩橈細鍐嶄篃涓嶄細鍏堜寒搴曠墝浜嗐€?/div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot amber"></div>
+        <div class="tl-date">6鏈?3鏃?路 鍛ㄤ竴</div>
+        <div class="tl-title">绠€鍘?鍏ヤ細鐢宠+缁忚垂鐢宠<span class="tl-tag build">鍩哄缓</span></div>
+        <div class="tl-desc">閫氱敤绠€鍘?椤礟PT锛堥潧钃濈摲涓婚锛夈€佹捣鍗楃渷浜哄伐鏅鸿兘瀛︿細鍏ヤ細鐢宠350瀛椼€丄I鏁欏宸ュ叿缁忚垂鐢宠244瀛?1500鍏冦€?/div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-date">6鏈?0鏃?路 鍛ㄤ簲</div>
+        <div class="tl-title">Datawhale鍥涚瘒鎺ㄦ枃鍐欏氨</div>
+        <div class="tl-desc">涓汉澶嶇洏787瀛?瀛﹂櫌鎺ㄦ枃975瀛?缇ょ畝鎶?34瀛?瀵瑰閫氱1164瀛椼€傜播宸︾綏浜旂被鍐呭妗嗘灦+AI+鏁欏10绡囪繛杞借鍒掋€?/div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot major"></div>
+        <div class="tl-date">6鏈?9鏃?路 鍛ㄥ洓</div>
+        <div class="tl-title">Datawhale AI+X鍒涢€犺妭娴峰彛绔?span class="tl-tag win">閲岀▼纰?/span></div>
+        <div class="tl-desc">绗竴鏈?OPC 鑳藉姏涓撳満锛?4:00-18:00锛屾嫑鍟嗗眬澶у帵A搴?0灞傛姤鍛婂巺銆?0浜哄埌鍦哄叏婊°€備富鎸?灏忔椂銆?浠戒綔鍝佷骇鍑恒€傝幏AI鏁欏鐮旂┒涓績鐗归個AI璁插笀鑱樹功銆傚姞涓夊紶鍏抽敭浜鸿剦鐗屻€?/div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Narratives -->
+  <section class="section">
+    <div class="section-title">馃Л 鎴愰暱鍙欎簨</div>
+    <div class="narrative-grid">
+      <div class="narrative-card">
+        <div class="nc-header"><span class="nc-icon">馃殌</span><div><div class="nc-title">AI鏁欏笀鐨勭牬鍦堜箣璺?/div><div class="nc-sub">2026.04 鈥?鑷充粖</div></div></div>
+        <div class="nc-desc">5闂ˋI铻嶅悎璇剧▼ 鈫?Datawhale娴峰彛绔欎富鎸佷汉 鈫?鏉窞鎬婚儴瀹炰範 鈫?姹熶笢绌洪棿璋堝垽銆備竴涓珮鏍℃暀甯堢敤涓変釜鏈堟椂闂达紝浠庛€屼細鐢ˋI鍑哄浘鐨勮€佸笀銆嶅彉鎴愩€孌atawhale杩愯惀鎬荤洃浜茶嚜涓轰綘璧扮壒鎵圭殑浜恒€嶃€?/div>
+        <div class="nc-quote">"鎴戠‘瀹炴兂鍔炰簨锛屾墍浠ユ垜鎶婂簳鐗屽憡缁欎綘銆?鈥斺€斿父闄?/div>
+      </div>
+      <div class="narrative-card">
+        <div class="nc-header"><span class="nc-icon">馃挕</span><div><div class="nc-title">鍟嗕笟瑙夐啋</div><div class="nc-sub">2026.06.26</div></div></div>
+        <div class="nc-desc">銆屾墠鍗庣殑浜烘洿闇€瑕佷綆澶村鍟嗕笟锛屽鍋氫汉銆備笉瑕佽鑰佸ぉ鐖风粰鐨勮垝閫傚湀鍥版锛屼富鍔ㄦ墦鐮撮偅涓彧闈犲ぉ璧嬪悆楗殑鏃т笘鐣屻€傘€嶁€斺€旂涓€娆¤柂璧勮皥鍒ょ殑澶嶇洏涔嬪悗锛屼笉鏄皵棣侊紝鑰屾槸鐪嬫竻浜嗘柟鍚戙€?/div>
+        <div class="nc-quote">"6000鍧椾拱涓€寮犺繘涓浗澶撮儴AI绀惧尯鐨勯棬绁紝鍊笺€?</div>
+      </div>
+      <div class="narrative-card">
+        <div class="nc-header"><span class="nc-icon">馃彌锔?/span><div><div><div class="nc-title">浠庝箼鏂瑰埌骞冲彴鏂?/div><div class="nc-sub">甯搁櫌鎴樼暐浣撶郴</div></div></div></div>
+        <div class="nc-desc">甯搁櫌鐨勬瘺閫夌骇鎴樼暐锛氱┖闂粹啋瀛靛寲鍣ㄢ啋骞冲彴鈫掑ぉ浣挎姇璧勩€傛案杩滀笉褰撲箼鏂广€傛牳蹇冮€昏緫锛氥€屼綘鑷繁閮芥病鏈夌‖璐э紝鍑粈涔堣鍒汉缁欎綘鍒嗕粈涔堬紵銆嶆灙鏉嗗瓙閲屽嚭鏀挎潈鈥斺€斾綘鐨勬灙锛屽氨鏄睙涓滅殑绌洪棿銆?/div>
+        <div class="nc-quote">"鍏堝崰浣忕敓鎬佷綅銆備笂浣嶄箣鍚庝綘鍐嶈皟鏁淬€?</div>
+      </div>
+      <div class="narrative-card">
+        <div class="nc-header"><span class="nc-icon">鈿欙笍</span><div><div class="nc-title">涓€浜哄叕鍙?+ AI铏氭嫙鍥㈤槦</div><div class="nc-sub">FDE妗嗘灦 路 灏忛泤绯荤粺</div></div></div>
+        <div class="nc-desc">1涓牳蹇冧汉绫?+ 50-100涓狝I Agent铏氭嫙鍥㈤槦銆侶arness=CEO Agent锛孲kill Registry=閮ㄩ棬Agent鐭╅樀銆備笉鏄彛鍙封€斺€擟olaOS鏁欏笀鏅鸿兘宸ヤ綔绔欍€屽皬闆呫€嶅凡鎼缓锛孋ODEX_PROMPT.md 9闃舵寮€鍙戣鍒掑氨缁€?/div>
+        <div class="nc-quote">"鍗曟墦鐙枟鏄ぉ鑺辨澘涓嶆槸楠勫偛銆?鈥斺€旂敤鎴峰師璇濓紝2026.06</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section">
+    <div class="section-title">馃搵 娲昏穬椤圭洰</div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="pc-emoji">馃彚</div>
+        <div class="pc-title">姹熶笢绠＄悊灞€绌洪棿璋堝垽</div>
+        <div class="pc-status"><span class="hot">鍗冲皢</span></div>
+        <div class="pc-desc">涓嬪懆甯搁櫌甯﹂槦瑙佷箶鑹枌銆傜洰鏍囷細鐢ㄥ鐢?娲诲姩閲忔崲绌洪棿銆備綘甯?20涓鐢熴€丏atawhale鐗屽瓙銆佷竴骞?0鍦烘椿鍔ㄣ€?/div>
+      </div>
+      <div class="project-card">
+        <div class="pc-emoji">馃洬</div>
+        <div class="pc-title">Datawhale鏉窞瀹炰範</div>
+        <div class="pc-status"><span class="live">宸茶幏鎵?/span></div>
+        <div class="pc-desc">鍟嗕笟杩愯惀 路 楂樻牎鐢熸€佸悎浣滐紝涓€涓湀銆傜敇鍏冨甯︼紝瀛︽眹鎶?鐜伴噾娴?鍟嗕笟/淇′换寤虹珛銆傛満绁ㄥ緟纭銆?/div>
+      </div>
+      <div class="project-card">
+        <div class="pc-emoji">馃摑</div>
+        <div class="pc-title">鍏紬鍙锋帹鏂囧彂甯?/div>
+        <div class="pc-status"><span class="wip">4绡囧緟鍙?/span></div>
+        <div class="pc-desc">Datawhale娲诲姩鍥涚瘒锛氫釜浜哄鐩?瀛﹂櫌鎺ㄦ枃/缇ょ畝鎶?瀵瑰閫氱銆傝繕鏈?绡囪绋嬬郴鍒楀緟鍙戙€?/div>
+      </div>
+      <div class="project-card">
+        <div class="pc-emoji">馃帗</div>
+        <div class="pc-title">5闂ˋI铻嶅悎璇剧▼</div>
+        <div class="pc-status"><span class="live">鎸佺画</span></div>
+        <div class="pc-desc">椤圭洰鍏堝璇?瀹胯垗鏀归€?鏁堟灉鍥惧寮?鏁板瓧鏍″洯/鏂囩尞缁艰堪銆?20+瀛︾敓锛岄噺浜I浣滃搧銆?/div>
+      </div>
+      <div class="project-card">
+        <div class="pc-emoji">馃</div>
+        <div class="pc-title">灏忛泤锛圕olaOS鏁欏笀绔欙級</div>
+        <div class="pc-status"><span class="wip">寮€鍙戜腑</span></div>
+        <div class="pc-desc">Soul+Memory+Skill涓夊眰鏋舵瀯銆侰ODEX_PROMPT.md 9闃舵寮€鍙戣鍒掑凡灏辩华銆傚緟鍠侰odex CLI鍚姩銆?/div>
+      </div>
+      <div class="project-card">
+        <div class="pc-emoji">馃摎</div>
+        <div class="pc-title">璋堝垽+鍟嗕笟瀛︿範</div>
+        <div class="pc-status"><span class="live">杩涜涓?/span></div>
+        <div class="pc-desc">銆婃帉鎺ц皥璇濄€嬨€婅皥鍒ゅ姏銆嬨€婂奖鍝嶅姏銆嬪井淇¤涔﹀湪鏋躲€傛瘡鍛ㄦ棩鎻愰啋+姣忔璋堝垽鍓嶅蹇樺綍銆?/div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-inner">
+      <span style="color: var(--text-muted); font-size: 13px;">鏇存柊浜?2026.06.28</span>
+      <span style="color: var(--text-muted); font-size: 13px;">路</span>
+      <span style="color: var(--text-muted); font-size: 13px;">Cola 鍒朵綔</span>
+      <span style="color: var(--text-muted); font-size: 13px;">路</span>
+      <span style="color: var(--text-muted); font-size: 13px;">鍘熷瓙鍚涚殑AI宸ヤ綔鍧?/span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
