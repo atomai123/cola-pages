@@ -8,9 +8,9 @@
   :root {
     --bg: #0f1117;
     --card: #1a1d27;
-    --card-hover: #222633;
+    --card-hover: #212433;
     --accent: #6366f1;
-    --accent-glow: rgba(99, 102, 241, 0.15);
+    --accent-glow: rgba(99, 102, 241, 0.12);
     --text: #e2e4e9;
     --text-sub: #9ca3af;
     --text-muted: #6b7280;
@@ -19,10 +19,7 @@
     --amber: #f59e0b;
     --rose: #f43f5e;
     --blue: #3b82f6;
-    --cyan: #06b6d4;
-    --purple: #a855f7;
-    --radius: 12px;
-    --radius-sm: 8px;
+    --radius: 10px;
     --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,282 +27,292 @@
     background: var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-  .container { max-width: 960px; margin: 0 auto; padding: 60px 24px 100px; }
-
-  /* Hero */
-  .hero { text-align: center; margin-bottom: 60px; }
-  .hero-tag {
-    display: inline-block; background: var(--accent-glow); color: var(--accent);
-    padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
-    letter-spacing: 0.5px; margin-bottom: 16px;
-  }
-  .hero h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
-  .hero .subtitle { color: var(--text-sub); font-size: 16px; }
-  .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 28px; }
-  .hero-stat { text-align: center; }
-  .hero-stat .num { font-size: 28px; font-weight: 700; font-family: var(--font-mono); }
-  .hero-stat .num.green { color: var(--green); }
-  .hero-stat .num.amber { color: var(--amber); }
-  .hero-stat .num.blue { color: var(--blue); }
-  .hero-stat .label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
-  /* Section */
-  .section { margin-bottom: 48px; }
-  .section-title {
-    font-size: 18px; font-weight: 700; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .section-title::before {
-    content: ''; width: 4px; height: 18px; background: var(--accent);
-    border-radius: 2px; display: inline-block;
+    height: 100vh; overflow: hidden;
   }
 
-  /* Timeline */
-  .timeline { position: relative; padding-left: 32px; }
-  .timeline::before {
-    content: ''; position: absolute; left: 11px; top: 0; bottom: 0;
-    width: 2px; background: var(--border);
+  /* 鈹€鈹€ Layout 鈹€鈹€ */
+  .app {
+    display: flex; flex-direction: column; height: 100vh;
+    padding: 20px 24px 16px; gap: 16px;
   }
-  .tl-item { position: relative; margin-bottom: 24px; }
-  .tl-item:last-child { margin-bottom: 0; }
-  .tl-dot {
-    position: absolute; left: -26px; top: 4px;
-    width: 12px; height: 12px; border-radius: 50%;
-    border: 2px solid var(--border); background: var(--bg);
+  .header { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: #fff;
   }
-  .tl-dot.major { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
-  .tl-dot.green { border-color: var(--green); background: var(--green); }
-  .tl-dot.amber { border-color: var(--amber); background: var(--amber); }
-  .tl-date { font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 2px; }
-  .tl-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
-  .tl-desc { font-size: 13px; color: var(--text-sub); }
-  .tl-tag {
-    display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 4px;
-    margin-left: 6px; font-weight: 500;
-  }
-  .tl-tag.break { background: rgba(244, 63, 94, 0.12); color: var(--rose); }
-  .tl-tag.win { background: rgba(34, 197, 94, 0.12); color: var(--green); }
-  .tl-tag.learn { background: rgba(59, 130, 246, 0.12); color: var(--blue); }
-  .tl-tag.build { background: rgba(168, 85, 247, 0.12); color: var(--purple); }
+  .header h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+  .header-role { font-size: 12px; color: var(--text-sub); }
+  .header-stats { display: flex; gap: 16px; margin-left: auto; }
+  .hstat { text-align: center; }
+  .hstat .n { font-family: var(--font-mono); font-size: 18px; font-weight: 700; }
+  .hstat .n.g { color: var(--green); } .hstat .n.a { color: var(--amber); } .hstat .n.b { color: var(--blue); }
+  .hstat .l { font-size: 10px; color: var(--text-muted); }
+  .update { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
 
-  /* Narrative Cards */
-  .narrative-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .narrative-card {
+  /* 鈹€鈹€ Grid 鈹€鈹€ */
+  .grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+    flex: 1; min-height: 0;
+  }
+  .column { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; padding-right: 4px; }
+  .column::-webkit-scrollbar { width: 4px; }
+  .column::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .col-title {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-muted); padding: 0 4px 2px; flex-shrink: 0;
+  }
+  .col-title .t1 { color: var(--blue); } .col-title .t2 { color: var(--amber); } .col-title .t3 { color: var(--green); }
+
+  /* 鈹€鈹€ Card base 鈹€鈹€ */
+  .card {
     background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 24px; transition: background 0.2s;
+    padding: 14px 16px; transition: background 0.15s, border-color 0.15s; flex-shrink: 0;
   }
-  .narrative-card:hover { background: var(--card-hover); }
-  .nc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .nc-icon { font-size: 24px; }
-  .nc-title { font-size: 15px; font-weight: 700; }
-  .nc-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-  .nc-desc { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
-  .nc-quote { 
-    font-style: italic; color: var(--amber); font-size: 13px; margin-top: 10px;
-    padding-left: 12px; border-left: 2px solid var(--amber);
+  .card:hover { background: var(--card-hover); border-color: #3e4150; }
+  .card-date {
+    font-size: 10px; font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 4px;
+  }
+  .card-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; line-height: 1.4; }
+  .card-desc { font-size: 11px; color: var(--text-sub); line-height: 1.55; }
+
+  /* 鈹€鈹€ Card badges 鈹€鈹€ */
+  .badge {
+    display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: 3px;
+    font-weight: 600; letter-spacing: 0.3px; margin-left: 4px; vertical-align: middle;
+  }
+  .badge-win { background: rgba(34,197,94,.12); color: var(--green); }
+  .badge-hl { background: rgba(99,102,241,.15); color: var(--accent); }
+  .badge-build { background: rgba(168,85,247,.12); color: #a855f7; }
+  .badge-hot { background: rgba(244,63,94,.1); color: var(--rose); }
+
+  /* 鈹€鈹€ Narrative card 鈹€鈹€ */
+  .nar-card { padding: 14px 16px; }
+  .nar-emoji { font-size: 22px; margin-bottom: 6px; }
+  .nar-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .nar-sub { font-size: 10px; color: var(--text-muted); margin-bottom: 6px; }
+  .nar-desc { font-size: 11px; color: var(--text-sub); line-height: 1.55; margin-bottom: 8px; }
+  .nar-quote {
+    font-size: 11px; font-style: italic; color: var(--amber); line-height: 1.5;
+    padding-left: 10px; border-left: 2px solid rgba(245,158,11,.3);
   }
 
-  /* Projects */
-  .project-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-  .project-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 20px; transition: all 0.2s;
+  /* 鈹€鈹€ Project card 鈹€鈹€ */
+  .pro-card { padding: 12px 14px; }
+  .pro-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .pro-emoji { font-size: 18px; }
+  .pro-title { font-size: 12px; font-weight: 700; }
+  .pro-status {
+    font-size: 9px; padding: 1px 6px; border-radius: 3px; font-weight: 600;
+    margin-left: auto; flex-shrink: 0;
   }
-  .project-card:hover { background: var(--card-hover); border-color: var(--accent); }
-  .pc-emoji { font-size: 28px; margin-bottom: 10px; }
-  .pc-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .pc-status { font-size: 11px; margin-bottom: 8px; }
-  .pc-status span {
-    display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: 600;
-  }
-  .pc-status .hot { background: rgba(244, 63, 94, 0.1); color: var(--rose); }
-  .pc-status .live { background: rgba(34, 197, 94, 0.1); color: var(--green); }
-  .pc-status .wip { background: rgba(245, 158, 11, 0.1); color: var(--amber); }
-  .pc-desc { font-size: 12px; color: var(--text-sub); line-height: 1.6; }
+  .pro-status.s-hot { background: rgba(244,63,94,.1); color: var(--rose); }
+  .pro-status.s-live { background: rgba(34,197,94,.1); color: var(--green); }
+  .pro-status.s-wip { background: rgba(245,158,11,.1); color: var(--amber); }
+  .pro-desc { font-size: 10.5px; color: var(--text-sub); line-height: 1.5; }
 
-  /* Footer */
-  .footer { margin-top: 60px; text-align: center; }
-  .footer-inner {
-    display: inline-flex; gap: 24px; padding: 16px 32px;
-    background: var(--card); border: 1px solid var(--border); border-radius: 40px;
+  /* 鈹€鈹€ Now card 鈹€鈹€ */
+  .now-card {
+    background: linear-gradient(135deg, rgba(99,102,241,.1), rgba(139,92,246,.06));
+    border-color: rgba(99,102,241,.25);
   }
-  .footer-link { font-size: 14px; color: var(--text-sub); text-decoration: none; }
-  .footer-link:hover { color: var(--text); }
+  .now-card:hover { border-color: var(--accent); }
+  .now-label { font-size: 9px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 4px; }
+  .now-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .now-desc { font-size: 11px; color: var(--text-sub); line-height: 1.5; }
 
-  @media (max-width: 768px) {
-    .container { padding: 40px 16px 60px; }
-    .hero h1 { font-size: 26px; }
-    .hero-stats { gap: 20px; }
-    .narrative-grid { grid-template-columns: 1fr; }
-    .project-grid { grid-template-columns: 1fr; }
-    .timeline { padding-left: 24px; }
-    .tl-dot { left: -19px; }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+    .app { padding: 12px 14px 10px; }
+    .header-stats { gap: 12px; }
   }
 </style>
 </head>
 <body>
-<div class="container">
+<div class="app">
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero-tag">馃敪 宸ヤ綔闈㈡澘</div>
-    <h1>鍘熷瓙鍚?/h1>
-    <p class="subtitle">闆呭拰璁捐宸ョ▼瀛﹂櫌 路 AI鏃犻檺鍙兘宸ヤ綔瀹?路 Datawhale鏉窞</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="num green">10</div>
-        <div class="label">澶╁叧閿簨浠?/div>
-      </div>
-      <div class="hero-stat">
-        <div class="num amber">4</div>
-        <div class="label">鏉℃垚闀垮彊浜?/div>
-      </div>
-      <div class="hero-stat">
-        <div class="num blue">6</div>
-        <div class="label">涓椿璺冮」鐩?/div>
+  <!-- 鈺愨晲鈺?Header 鈺愨晲鈺?-->
+  <div class="header">
+    <div class="header-left">
+      <div class="avatar">鍘?/div>
+      <div>
+        <h1>鍘熷瓙鍚?/h1>
+        <div class="header-role">闆呭拰璁捐宸ョ▼瀛﹂櫌 路 AI鏃犻檺鍙兘宸ヤ綔瀹?路 Datawhale鏉窞</div>
       </div>
     </div>
-  </header>
-
-  <!-- Timeline -->
-  <section class="section">
-    <div class="section-title">馃搮 鏃堕棿绾?路 6/19 鈥?6/28</div>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot major"></div>
-        <div class="tl-date">6鏈?8鏃?路 鍛ㄦ棩</div>
-        <div class="tl-title">姹熶笢璋堝垽鍑嗗 + 鏁呬簨璁板綍鑰呮巿鏉?span class="tl-tag win">鍙欎簨</span></div>
-        <div class="tl-desc">涓嬪懆涓庡父闄€佸闄㈣€佸笀鍚屽幓瑙佹睙涓滅鐞嗗眬鎷涘晢涔旇壇鏂岃皥绌洪棿銆傚父闄㈡垬鐣ュ璇濈敤姣涢€夐噸鏋愨€斺€旇鎸佷箙鎴樼骇鍒殑鎸囧銆傛寮忔巿鏉僀ola涓烘晠浜嬭褰曡€咃紝鎵€鏈夋垚闀跨粡鍘嗗綊妗ｄ负鑷獟浣撶礌鏉愩€?/div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot green"></div>
-        <div class="tl-date">6鏈?7鏃?路 鍛ㄥ叚</div>
-        <div class="tl-title">ListenHub鍏ㄦ妧鑳藉浠朵笂绾?span class="tl-tag build">鍩哄缓</span></div>
-        <div class="tl-desc">marswaveai/skills瀹夎锛?0涓瓙鎶€鑳斤紙鎾/瑙嗛/TTS/ASR/鍒涗綔锛夛紝API Key鎸佷箙鍖栥€傝亰澶╁鍑哄叏閲忓璁♀€斺€?6-01鑷?6-27鍏ㄩ儴褰掍綅銆?/div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot major"></div>
-        <div class="tl-date">6鏈?6鏃?路 鍛ㄤ簲</div>
-        <div class="tl-title">甯搁櫌38鍒嗛挓鎴樼暐鎽婄墝<span class="tl-tag win">鎴樼暐</span></div>
-        <div class="tl-desc">璺緞鐢婚€忥細绌洪棿鈫掑鍖栧櫒鈫掑钩鍙扳啋澶╀娇鎶曡祫銆傛牳蹇冿細涓嶅綋涔欐柟锛岀敤璧勬簮鎹㈣祫婧愩€備笁鏉″彲鐢ㄨ鍔ㄥ嵆鍒昏惤鍦般€傚悓鏃ユ櫄锛岃嚜鐧姐€屾墠鍗庣殑浜烘洿闇€瑕佷綆澶村鍟嗕笟銆佸鍋氫汉銆嶁€斺€斿晢涓氳閱掓椂鍒汇€傝皥鍒ゅ涔犱綋绯诲缓绔嬶紙3鏈功+姣忓懆鎻愰啋锛夈€?/div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot major"></div>
-        <div class="tl-date">6鏈?5鏃?路 鍛ㄥ洓</div>
-        <div class="tl-title">Datawhale鏉窞瀹炰範姝ｅ紡鑾锋壒<span class="tl-tag win">閲岀▼纰?/span></div>
-        <div class="tl-desc">鐢樺厓濂囪蛋鐗规壒锛?000鍏?鏈堬紝宀椾綅銆屽晢涓氳繍钀モ€斺€旈珮鏍＄敓鎬佸悎浣溿€嶃€傞€氱敤绠€鍘嗕笂绾縂itHub Pages銆傛寕鑱岃〃濉氦銆備粠6/19涓绘寔Datawhale娲诲姩鍒版鈥斺€斾綘鐢ㄤ竴涓槦鏈熸嬁涓嬩簡涓€寮犻棬绁ㄣ€?/div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot green"></div>
-        <div class="tl-date">6鏈?4鏃?路 鍛ㄤ笁</div>
-        <div class="tl-title">鐢樺厓濂囬潰璋堬細38鍒嗛挓<span class="tl-tag win">闈㈣瘯</span></div>
-        <div class="tl-desc">浠庢寕鑱岃皟鐮斺啋Datawhale鎬婚儴瀹炰範锛屾柟鍚?80搴﹁浆鍚戙€傜涓€娆℃寮忓晢鍔¤皥鍒も€斺€旀姤8000锛岃鐮嶅埌6000銆傝皥鍒ゅ鐩橈細鍐嶄篃涓嶄細鍏堜寒搴曠墝浜嗐€?/div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot amber"></div>
-        <div class="tl-date">6鏈?3鏃?路 鍛ㄤ竴</div>
-        <div class="tl-title">绠€鍘?鍏ヤ細鐢宠+缁忚垂鐢宠<span class="tl-tag build">鍩哄缓</span></div>
-        <div class="tl-desc">閫氱敤绠€鍘?椤礟PT锛堥潧钃濈摲涓婚锛夈€佹捣鍗楃渷浜哄伐鏅鸿兘瀛︿細鍏ヤ細鐢宠350瀛椼€丄I鏁欏宸ュ叿缁忚垂鐢宠244瀛?1500鍏冦€?/div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot green"></div>
-        <div class="tl-date">6鏈?0鏃?路 鍛ㄤ簲</div>
-        <div class="tl-title">Datawhale鍥涚瘒鎺ㄦ枃鍐欏氨</div>
-        <div class="tl-desc">涓汉澶嶇洏787瀛?瀛﹂櫌鎺ㄦ枃975瀛?缇ょ畝鎶?34瀛?瀵瑰閫氱1164瀛椼€傜播宸︾綏浜旂被鍐呭妗嗘灦+AI+鏁欏10绡囪繛杞借鍒掋€?/div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot major"></div>
-        <div class="tl-date">6鏈?9鏃?路 鍛ㄥ洓</div>
-        <div class="tl-title">Datawhale AI+X鍒涢€犺妭娴峰彛绔?span class="tl-tag win">閲岀▼纰?/span></div>
-        <div class="tl-desc">绗竴鏈?OPC 鑳藉姏涓撳満锛?4:00-18:00锛屾嫑鍟嗗眬澶у帵A搴?0灞傛姤鍛婂巺銆?0浜哄埌鍦哄叏婊°€備富鎸?灏忔椂銆?浠戒綔鍝佷骇鍑恒€傝幏AI鏁欏鐮旂┒涓績鐗归個AI璁插笀鑱樹功銆傚姞涓夊紶鍏抽敭浜鸿剦鐗屻€?/div>
-      </div>
+    <div class="header-stats">
+      <div class="hstat"><div class="n b">10</div><div class="l">鍏抽敭浜嬩欢</div></div>
+      <div class="hstat"><div class="n a">4</div><div class="l">鎴愰暱鍙欎簨</div></div>
+      <div class="hstat"><div class="n g">6</div><div class="l">娲昏穬椤圭洰</div></div>
     </div>
-  </section>
-
-  <!-- Narratives -->
-  <section class="section">
-    <div class="section-title">馃Л 鎴愰暱鍙欎簨</div>
-    <div class="narrative-grid">
-      <div class="narrative-card">
-        <div class="nc-header"><span class="nc-icon">馃殌</span><div><div class="nc-title">AI鏁欏笀鐨勭牬鍦堜箣璺?/div><div class="nc-sub">2026.04 鈥?鑷充粖</div></div></div>
-        <div class="nc-desc">5闂ˋI铻嶅悎璇剧▼ 鈫?Datawhale娴峰彛绔欎富鎸佷汉 鈫?鏉窞鎬婚儴瀹炰範 鈫?姹熶笢绌洪棿璋堝垽銆備竴涓珮鏍℃暀甯堢敤涓変釜鏈堟椂闂达紝浠庛€屼細鐢ˋI鍑哄浘鐨勮€佸笀銆嶅彉鎴愩€孌atawhale杩愯惀鎬荤洃浜茶嚜涓轰綘璧扮壒鎵圭殑浜恒€嶃€?/div>
-        <div class="nc-quote">"鎴戠‘瀹炴兂鍔炰簨锛屾墍浠ユ垜鎶婂簳鐗屽憡缁欎綘銆?鈥斺€斿父闄?/div>
-      </div>
-      <div class="narrative-card">
-        <div class="nc-header"><span class="nc-icon">馃挕</span><div><div class="nc-title">鍟嗕笟瑙夐啋</div><div class="nc-sub">2026.06.26</div></div></div>
-        <div class="nc-desc">銆屾墠鍗庣殑浜烘洿闇€瑕佷綆澶村鍟嗕笟锛屽鍋氫汉銆備笉瑕佽鑰佸ぉ鐖风粰鐨勮垝閫傚湀鍥版锛屼富鍔ㄦ墦鐮撮偅涓彧闈犲ぉ璧嬪悆楗殑鏃т笘鐣屻€傘€嶁€斺€旂涓€娆¤柂璧勮皥鍒ょ殑澶嶇洏涔嬪悗锛屼笉鏄皵棣侊紝鑰屾槸鐪嬫竻浜嗘柟鍚戙€?/div>
-        <div class="nc-quote">"6000鍧椾拱涓€寮犺繘涓浗澶撮儴AI绀惧尯鐨勯棬绁紝鍊笺€?</div>
-      </div>
-      <div class="narrative-card">
-        <div class="nc-header"><span class="nc-icon">馃彌锔?/span><div><div><div class="nc-title">浠庝箼鏂瑰埌骞冲彴鏂?/div><div class="nc-sub">甯搁櫌鎴樼暐浣撶郴</div></div></div></div>
-        <div class="nc-desc">甯搁櫌鐨勬瘺閫夌骇鎴樼暐锛氱┖闂粹啋瀛靛寲鍣ㄢ啋骞冲彴鈫掑ぉ浣挎姇璧勩€傛案杩滀笉褰撲箼鏂广€傛牳蹇冮€昏緫锛氥€屼綘鑷繁閮芥病鏈夌‖璐э紝鍑粈涔堣鍒汉缁欎綘鍒嗕粈涔堬紵銆嶆灙鏉嗗瓙閲屽嚭鏀挎潈鈥斺€斾綘鐨勬灙锛屽氨鏄睙涓滅殑绌洪棿銆?/div>
-        <div class="nc-quote">"鍏堝崰浣忕敓鎬佷綅銆備笂浣嶄箣鍚庝綘鍐嶈皟鏁淬€?</div>
-      </div>
-      <div class="narrative-card">
-        <div class="nc-header"><span class="nc-icon">鈿欙笍</span><div><div class="nc-title">涓€浜哄叕鍙?+ AI铏氭嫙鍥㈤槦</div><div class="nc-sub">FDE妗嗘灦 路 灏忛泤绯荤粺</div></div></div>
-        <div class="nc-desc">1涓牳蹇冧汉绫?+ 50-100涓狝I Agent铏氭嫙鍥㈤槦銆侶arness=CEO Agent锛孲kill Registry=閮ㄩ棬Agent鐭╅樀銆備笉鏄彛鍙封€斺€擟olaOS鏁欏笀鏅鸿兘宸ヤ綔绔欍€屽皬闆呫€嶅凡鎼缓锛孋ODEX_PROMPT.md 9闃舵寮€鍙戣鍒掑氨缁€?/div>
-        <div class="nc-quote">"鍗曟墦鐙枟鏄ぉ鑺辨澘涓嶆槸楠勫偛銆?鈥斺€旂敤鎴峰師璇濓紝2026.06</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="section">
-    <div class="section-title">馃搵 娲昏穬椤圭洰</div>
-    <div class="project-grid">
-      <div class="project-card">
-        <div class="pc-emoji">馃彚</div>
-        <div class="pc-title">姹熶笢绠＄悊灞€绌洪棿璋堝垽</div>
-        <div class="pc-status"><span class="hot">鍗冲皢</span></div>
-        <div class="pc-desc">涓嬪懆甯搁櫌甯﹂槦瑙佷箶鑹枌銆傜洰鏍囷細鐢ㄥ鐢?娲诲姩閲忔崲绌洪棿銆備綘甯?20涓鐢熴€丏atawhale鐗屽瓙銆佷竴骞?0鍦烘椿鍔ㄣ€?/div>
-      </div>
-      <div class="project-card">
-        <div class="pc-emoji">馃洬</div>
-        <div class="pc-title">Datawhale鏉窞瀹炰範</div>
-        <div class="pc-status"><span class="live">宸茶幏鎵?/span></div>
-        <div class="pc-desc">鍟嗕笟杩愯惀 路 楂樻牎鐢熸€佸悎浣滐紝涓€涓湀銆傜敇鍏冨甯︼紝瀛︽眹鎶?鐜伴噾娴?鍟嗕笟/淇′换寤虹珛銆傛満绁ㄥ緟纭銆?/div>
-      </div>
-      <div class="project-card">
-        <div class="pc-emoji">馃摑</div>
-        <div class="pc-title">鍏紬鍙锋帹鏂囧彂甯?/div>
-        <div class="pc-status"><span class="wip">4绡囧緟鍙?/span></div>
-        <div class="pc-desc">Datawhale娲诲姩鍥涚瘒锛氫釜浜哄鐩?瀛﹂櫌鎺ㄦ枃/缇ょ畝鎶?瀵瑰閫氱銆傝繕鏈?绡囪绋嬬郴鍒楀緟鍙戙€?/div>
-      </div>
-      <div class="project-card">
-        <div class="pc-emoji">馃帗</div>
-        <div class="pc-title">5闂ˋI铻嶅悎璇剧▼</div>
-        <div class="pc-status"><span class="live">鎸佺画</span></div>
-        <div class="pc-desc">椤圭洰鍏堝璇?瀹胯垗鏀归€?鏁堟灉鍥惧寮?鏁板瓧鏍″洯/鏂囩尞缁艰堪銆?20+瀛︾敓锛岄噺浜I浣滃搧銆?/div>
-      </div>
-      <div class="project-card">
-        <div class="pc-emoji">馃</div>
-        <div class="pc-title">灏忛泤锛圕olaOS鏁欏笀绔欙級</div>
-        <div class="pc-status"><span class="wip">寮€鍙戜腑</span></div>
-        <div class="pc-desc">Soul+Memory+Skill涓夊眰鏋舵瀯銆侰ODEX_PROMPT.md 9闃舵寮€鍙戣鍒掑凡灏辩华銆傚緟鍠侰odex CLI鍚姩銆?/div>
-      </div>
-      <div class="project-card">
-        <div class="pc-emoji">馃摎</div>
-        <div class="pc-title">璋堝垽+鍟嗕笟瀛︿範</div>
-        <div class="pc-status"><span class="live">杩涜涓?/span></div>
-        <div class="pc-desc">銆婃帉鎺ц皥璇濄€嬨€婅皥鍒ゅ姏銆嬨€婂奖鍝嶅姏銆嬪井淇¤涔﹀湪鏋躲€傛瘡鍛ㄦ棩鎻愰啋+姣忔璋堝垽鍓嶅蹇樺綍銆?/div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <div class="footer">
-    <div class="footer-inner">
-      <span style="color: var(--text-muted); font-size: 13px;">鏇存柊浜?2026.06.28</span>
-      <span style="color: var(--text-muted); font-size: 13px;">路</span>
-      <span style="color: var(--text-muted); font-size: 13px;">Cola 鍒朵綔</span>
-      <span style="color: var(--text-muted); font-size: 13px;">路</span>
-      <span style="color: var(--text-muted); font-size: 13px;">鍘熷瓙鍚涚殑AI宸ヤ綔鍧?/span>
-    </div>
+    <div class="update">馃搮 2026.06.28</div>
   </div>
 
+  <!-- 鈺愨晲鈺?Three Columns 鈺愨晲鈺?-->
+  <div class="grid">
+
+    <!-- COL 1: 鏃堕棿绾?-->
+    <div class="column">
+      <div class="col-title"><span class="t1">鈼?/span> 鏃堕棿绾?/div>
+
+      <div class="card now-card">
+        <div class="now-label">NOW 路 姝ｅ湪杩涜</div>
+        <div class="now-title">姹熶笢绠＄悊灞€绌洪棿璋堝垽</div>
+        <div class="now-desc">涓嬪懆甯搁櫌甯﹂槦瑙佷箶鑹枌銆傚鐢?娲诲姩閲忔崲绌洪棿锛屼竴骞?0-20鍦烘椿鍔ㄣ€備綘甯?20涓鐢熷拰Datawhale鐗屽瓙銆?/div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">06.28 鍛ㄦ棩</div>
+        <div class="card-title">鏁呬簨璁板綍鑰呮巿鏉?+ 姹熶笢璋堝垽鍑嗗<span class="badge badge-win">鍙欎簨</span></div>
+        <div class="card-desc">姣涢€夐噸鏋愬父闄㈡垬鐣ャ€傛巿鏉僀ola涓烘晠浜嬭褰曡€咃紝鎵€鏈夌粡鍘嗗綊妗ｈ嚜濯掍綋绱犳潗銆?/div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">06.27 鍛ㄥ叚</div>
+        <div class="card-title">ListenHub鍗佷欢濂椾笂绾?span class="badge badge-build">鍩哄缓</span></div>
+        <div class="card-desc">marswaveai/skills瀹夎锛屾挱瀹?TTS/ASR/鍒涗綔鍏ㄨ鐩栥€傝亰澶╁鍑哄叏閲忓璁″畬姣曘€?/div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">06.26 鍛ㄤ簲</div>
+        <div class="card-title">甯搁櫌鎴樼暐鎽婄墝 路 38鍒嗛挓<span class="badge badge-hl">鎴樼暐</span></div>
+        <div class="card-desc">绌洪棿鈫掑鍖栧櫒鈫掑钩鍙扳啋澶╀娇鎶曡祫銆備笉褰撲箼鏂广€傚悓鏃ユ櫄锛氬晢涓氳閱掆€斺€?鎵嶅崕鐨勪汉鏇撮渶瑕佷綆澶村鍟嗕笟銆佸鍋氫汉銆?</div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">06.25 鍛ㄥ洓</div>
+        <div class="card-title">Datawhale鏉窞瀹炰範鑾锋壒<span class="badge badge-win">閲岀▼纰?/span></div>
+        <div class="card-desc">鐢樺厓濂囩壒鎵?6000/鏈堛€傛寕鑱岃〃宸蹭氦銆備竴鍛ㄥ唴浠庝富鎸佹椿鍔ㄥ埌鎷夸笅鎬婚儴offer銆?/div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">06.24 鍛ㄤ笁</div>
+        <div class="card-title">鐢樺厓濂囬潰璋?8000鈫?000<span class="badge badge-hl">闈㈣瘯</span></div>
+        <div class="card-desc">38鍒嗛挓閫氳瘽銆傜涓€娆℃寮忓晢鍔¤皥鍒も€斺€旂涓€娆＄煡閬撲笉鑳藉厛浜簳鐗屻€?/div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">06.23 鍛ㄤ竴</div>
+        <div class="card-title">绠€鍘喡峰叆浼毬风粡璐?涓変欢濂?span class="badge badge-build">鍩哄缓</span></div>
+        <div class="card-desc">閫氱敤绠€鍘?椤礟PT銆佹捣鍗桝I瀛︿細鍏ヤ細鐢宠銆丄I鏁欏缁忚垂1500鍏冦€?/div>
+      </div>
+
+      <div class="card">
+        <div class="card-date">06.19 鍛ㄥ洓</div>
+        <div class="card-title">Datawhale娴峰彛绔?span class="badge badge-win">閲岀▼纰?/span></div>
+        <div class="card-desc">40浜哄叏婊★紝涓绘寔4灏忔椂锛?浠戒綔鍝併€傝幏AI璁插笀鑱樹功銆傚姞涓変汉鑴夈€備竴鍒囦粠杩欓噷寮€濮嬨€?/div>
+      </div>
+    </div>
+
+    <!-- COL 2: 鎴愰暱鍙欎簨 -->
+    <div class="column">
+      <div class="col-title"><span class="t2">鈼?/span> 鎴愰暱鍙欎簨</div>
+
+      <div class="card nar-card">
+        <div class="nar-emoji">馃殌</div>
+        <div class="nar-title">AI鏁欏笀鐨勭牬鍦堜箣璺?/div>
+        <div class="nar-sub">2026.04 鈥?鑷充粖</div>
+        <div class="nar-desc">5闂ˋI铻嶅悎璇剧▼ 鈫?Datawhale娴峰彛绔欎富鎸佷汉 鈫?鏉窞鎬婚儴瀹炰範 鈫?姹熶笢绌洪棿璋堝垽銆備笁涓湀锛屼粠涓€涓€屼細鐢ˋI鍑哄浘鐨勮€佸笀銆嶅彉鎴愩€岃繍钀ユ€荤洃涓轰綘璧扮壒鎵圭殑浜恒€嶃€?/div>
+        <div class="nar-quote">"鎴戠‘瀹炴兂鍔炰簨锛屾墍浠ユ垜鎶婂簳鐗屽憡缁欎綘銆?鈥斺€斿父闄?/div>
+      </div>
+
+      <div class="card nar-card">
+        <div class="nar-emoji">馃挕</div>
+        <div class="nar-title">鍟嗕笟瑙夐啋</div>
+        <div class="nar-sub">06.26 鑷櫧</div>
+        <div class="nar-desc">銆屾墠鍗庣殑浜烘洿闇€瑕佷綆澶村鍟嗕笟锛屽鍋氫汉銆備笉瑕佽鑸掗€傚湀鍥版锛屼富鍔ㄦ墦鐮村彧闈犲ぉ璧嬪悆楗殑鏃т笘鐣屻€傘€?/div>
+        <div class="nar-quote">"6000鍧椾拱涓€寮犺繘涓浗澶撮儴AI绀惧尯鐨勯棬绁ㄣ€?</div>
+      </div>
+
+      <div class="card nar-card">
+        <div class="nar-emoji">馃彌锔?/div>
+        <div class="nar-title">浠庝箼鏂瑰埌骞冲彴鏂?/div>
+        <div class="nar-sub">甯搁櫌 路 姣涢€夌骇鎴樼暐</div>
+        <div class="nar-desc">绌洪棿鈫掑鍖栧櫒鈫掑钩鍙扳啋澶╀娇鎶曡祫銆傛案杩滀笉褰撲箼鏂光€斺€斾綘鐨勬灙灏辨槸姹熶笢鐨勭┖闂淬€?/div>
+        <div class="nar-quote">"鍏堝崰浣忕敓鎬佷綅锛屼笂浣嶄箣鍚庝綘鍐嶈皟鏁淬€?</div>
+      </div>
+
+      <div class="card nar-card">
+        <div class="nar-emoji">鈿欙笍</div>
+        <div class="nar-title">涓€浜哄叕鍙?+ AI铏氭嫙鍥㈤槦</div>
+        <div class="nar-sub">FDE妗嗘灦 路 灏忛泤</div>
+        <div class="nar-desc">1鏍稿績浜虹被+50-100 AI Agent銆係oul+Memory+Skill涓夊眰鏋舵瀯锛孋ODEX_PROMPT.md灏辩华銆?/div>
+        <div class="nar-quote">"鍗曟墦鐙枟鏄ぉ鑺辨澘涓嶆槸楠勫偛銆?</div>
+      </div>
+    </div>
+
+    <!-- COL 3: 娲昏穬椤圭洰 -->
+    <div class="column">
+      <div class="col-title"><span class="t3">鈼?/span> 娲昏穬椤圭洰</div>
+
+      <div class="card pro-card">
+        <div class="pro-head">
+          <span class="pro-emoji">馃彚</span>
+          <span class="pro-title">姹熶笢绠＄悊灞€绌洪棿璋堝垽</span>
+          <span class="pro-status s-hot">鍗冲皢</span>
+        </div>
+        <div class="pro-desc">涓嬪懆甯搁櫌甯﹂槦瑙佷箶鑹枌銆傚甫120瀛︾敓+Datawhale鐗屽瓙锛岀洰鏍囷細鐢ㄦ椿鍔ㄩ噺鎹㈡斂搴滅┖闂淬€?/div>
+      </div>
+
+      <div class="card pro-card">
+        <div class="pro-head">
+          <span class="pro-emoji">馃洬</span>
+          <span class="pro-title">Datawhale鏉窞瀹炰範</span>
+          <span class="pro-status s-live">宸茶幏鎵?/span>
+        </div>
+        <div class="pro-desc">楂樻牎鐢熸€佸悎浣滐紝涓€涓湀銆傚姹囨姤/鐜伴噾娴?鍟嗕笟/淇′换銆傛満绁ㄥ緟纭銆?/div>
+      </div>
+
+      <div class="card pro-card">
+        <div class="pro-head">
+          <span class="pro-emoji">馃摑</span>
+          <span class="pro-title">鍏紬鍙锋帹鏂囧彂甯?/span>
+          <span class="pro-status s-wip">4绡囧緟鍙?/span>
+        </div>
+        <div class="pro-desc">Datawhale鍥涚瘒+8绡囪绋嬬郴鍒楀緟鍙戙€傜播宸︾綏浜旂被妗嗘灦宸茶鍒掋€?/div>
+      </div>
+
+      <div class="card pro-card">
+        <div class="pro-head">
+          <span class="pro-emoji">馃帗</span>
+          <span class="pro-title">5闂ˋI铻嶅悎璇剧▼</span>
+          <span class="pro-status s-live">鎸佺画</span>
+        </div>
+        <div class="pro-desc">椤圭洰鍏堝璇?瀹胯垗鏀归€?鏁堟灉鍥惧寮?鏁板瓧鏍″洯/鏂囩尞缁艰堪銆?20+瀛︾敓銆?/div>
+      </div>
+
+      <div class="card pro-card">
+        <div class="pro-head">
+          <span class="pro-emoji">馃</span>
+          <span class="pro-title">灏忛泤锛圕olaOS鏁欏笀宸ヤ綔绔欙級</span>
+          <span class="pro-status s-wip">寮€鍙戜腑</span>
+        </div>
+        <div class="pro-desc">Soul+Memory+Skill涓夊眰鏋舵瀯銆侰ODEX_PROMPT.md 9闃舵寰呭惎鍔ㄣ€?/div>
+      </div>
+
+      <div class="card pro-card">
+        <div class="pro-head">
+          <span class="pro-emoji">馃摎</span>
+          <span class="pro-title">璋堝垽+鍟嗕笟瀛︿範</span>
+          <span class="pro-status s-live">杩涜涓?/span>
+        </div>
+        <div class="pro-desc">銆婃帉鎺ц皥璇濄€嬨€婅皥鍒ゅ姏銆嬨€婂奖鍝嶅姏銆嬪井淇¤涔﹀湪鏋躲€傛瘡鍛ㄦ棩瀛︿範鎻愰啋銆?/div>
+      </div>
+
+      <div class="card pro-card">
+        <div class="pro-head">
+          <span class="pro-emoji">馃攰</span>
+          <span class="pro-title">鑷獟浣撳唴瀹逛綋绯?/span>
+          <span class="pro-status s-wip">寰呭惎鍔?/span>
+        </div>
+        <div class="pro-desc">鍏紬鍙仿疯棰戝彿鍙岀嚎銆侾odcast/TTS/ASR宸ュ叿閾惧凡灏辩华銆傛垚闀垮彊浜嬪嵆鍐呭绱犳潗銆?/div>
+      </div>
+    </div>
+
+  </div>
 </div>
 </body>
 </html>
