@@ -634,6 +634,55 @@
       gap:16px!important;
     }
     .slide.dark [style*="flex:0 0 34vw"]>div:last-child{margin-top:5px}
+
+    /* 手机端统一居中：让它更像一张完整的个人名片 */
+    .slide{text-align:center}
+    .chrome{justify-content:center}
+    .chrome>div:first-child{text-align:center}
+    .slide.hero>div[style*="gap:6vw"]{
+      align-items:center!important;
+      text-align:center;
+    }
+    .slide.hero>div[style*="gap:6vw"]>div:first-child{
+      align-items:center;
+      text-align:center;
+    }
+    .slide.light>div[style*="max-width:72vw"]{
+      align-items:center;
+      text-align:center;
+    }
+    .slide.light>div[style*="max-width:72vw"]>div[style*="gap:6vw"]{
+      align-items:center;
+      width:100%;
+    }
+    .stat-card{align-items:center;text-align:center}
+    .slide.light [style*="align-items:baseline"][style*="gap:2vw"]{
+      align-items:center!important;
+      min-width:0!important;
+      width:100%;
+    }
+    .slide.dark>div[style*="gap:4vw"][style*="align-items:center"]{
+      align-items:center!important;
+      text-align:center;
+    }
+    .slide.dark>div[style*="gap:4vw"][style*="align-items:center"]>div:first-child{
+      width:100%;
+      align-items:center;
+    }
+    .slide.dark [style*="flex:0 0 34vw"]{
+      align-items:center!important;
+      text-align:center;
+    }
+    .slide.dark [style*="flex:0 0 34vw"]>.h3-zh,
+    .slide.dark [style*="flex:0 0 34vw"]>div:last-child{
+      align-self:center!important;
+      text-align:center;
+    }
+    .slide.dark [style*="flex:0 0 34vw"] span{
+      font-size:12px!important;
+      line-height:1.4;
+      opacity:.72;
+    }
   }
 </style>
 </head>
