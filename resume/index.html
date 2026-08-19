@@ -490,8 +490,8 @@
       max-height:240px;
       align-self:center;
     }
-    .slide.hero [style*="font-size:2vw"]{font-size:22px!important;line-height:1.45}
-    .slide.hero [style*="font-size:1.15vw"]{font-size:16px!important;line-height:1.8}
+    .slide.hero [style*="font-size:2vw"]{font-size:18px!important;line-height:1.45;letter-spacing:-.03em}
+    .slide.hero [style*="font-size:1.15vw"]{font-size:16px!important;line-height:1.8;margin-top:10px!important}
 
     /* 个人简介：取消桌面端宽度限制，信息纵向展开 */
     .slide.light>div[style*="max-width:72vw"]{
@@ -641,8 +641,10 @@
     .chrome>div:first-child{text-align:center}
     .slide.hero>div[style*="gap:6vw"]{
       align-items:center!important;
+      gap:16px!important;
       text-align:center;
     }
+    .slide.hero>div[style*="gap:6vw"] img[src*="portrait-photo"]{margin-top:-4px;transform:translateY(-48px)}
     .slide.hero>div[style*="gap:6vw"]>div:first-child{
       align-items:center;
       text-align:center;
@@ -683,6 +685,12 @@
       line-height:1.4;
       opacity:.72;
     }
+  }
+  @media (min-width:360px) and (max-width:700px){
+    .slide.hero [style*="font-size:2vw"]{white-space:nowrap}
+  }
+  @media (max-width:359px){
+    .slide.hero [style*="font-size:2vw"]{font-size:15px!important;white-space:nowrap}
   }
 </style>
 </head>
