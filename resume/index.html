@@ -421,6 +421,140 @@
     .pipeline{grid-template-columns:repeat(2,1fr)}
     .grid-2-7-5,.grid-2-6-6,.grid-2-8-4{grid-template-columns:1fr}
   }
+
+  /* ============ 手机端：纵向阅读模式 ============
+     桌面端继续保留横向翻页；700px 以下切换为连续上下滚动。
+     手机端字号和间距单独放大，避免把桌面版“缩小”后硬塞进屏幕。
+  */
+  @media (max-width:700px){
+    html,body{
+      width:100%;
+      min-height:100%;
+      height:auto;
+      overflow-x:hidden;
+      overflow-y:auto;
+      scroll-behavior:smooth;
+      scroll-snap-type:y proximity;
+    }
+
+    canvas.bg{position:fixed;inset:0;width:100vw;height:100vh}
+    #hint,#nav,#overview{display:none!important}
+
+    #deck{
+      position:relative;
+      inset:auto;
+      display:block;
+      width:100%!important;
+      height:auto;
+      transform:none!important;
+      transition:none;
+    }
+
+    .slide{
+      width:100%;
+      height:auto;
+      min-height:100svh;
+      flex:none;
+      padding:24px 22px 58px;
+      overflow:visible;
+      scroll-snap-align:start;
+      scroll-snap-stop:normal;
+    }
+
+    .chrome{font-size:12px;letter-spacing:.12em;line-height:1.5;opacity:.82}
+    .chrome .left,.chrome .right{gap:1em}
+    .foot{font-size:12px;letter-spacing:.08em;line-height:1.6;gap:16px;opacity:.72}
+    .foot>div:first-child{max-width:78%;word-break:break-all}
+    .kicker{font-size:12px;letter-spacing:.18em;margin-bottom:14px}
+    .display-zh{font-size:16vw!important;line-height:1}
+    .h2-zh{font-size:8vw;line-height:1.2}
+    .h3-zh{font-size:6vw;line-height:1.3}
+    .h-hero{font-size:16vw}
+    .h-xl{font-size:11vw}
+    .lead{font-size:5.2vw;line-height:1.6}
+    .body-zh,.body-serif{font-size:17px;line-height:1.8}
+    .rule{margin:20px 0}
+
+    /* 封面：头像与标题上下排列，信息不再横向挤压 */
+    .slide.hero>div[style*="gap:6vw"]{
+      flex-direction:column;
+      align-items:flex-start!important;
+      justify-content:center;
+      gap:28px!important;
+    }
+    .slide.hero>div[style*="gap:6vw"]>div:first-child{width:100%}
+    .slide.hero>div[style*="gap:6vw"] img[src*="portrait-photo"]{
+      width:44vw!important;
+      height:58vw!important;
+      max-width:180px;
+      max-height:240px;
+      align-self:center;
+    }
+    .slide.hero [style*="font-size:2vw"]{font-size:22px!important;line-height:1.45}
+    .slide.hero [style*="font-size:1.15vw"]{font-size:16px!important;line-height:1.8}
+
+    /* 个人简介：取消桌面端宽度限制，信息纵向展开 */
+    .slide.light>div[style*="max-width:72vw"]{
+      width:100%;
+      max-width:none!important;
+      gap:28px!important;
+    }
+    .slide.light>div[style*="max-width:72vw"]>div[style*="gap:6vw"]{
+      flex-direction:column;
+      gap:20px!important;
+    }
+    .slide.light [style*="font-size:1.2vw"]{font-size:17px!important;line-height:1.9!important}
+    .slide.light [style*="font-size:1.3vw"]{font-size:18px!important}
+
+    /* 认证：六项内容单列，保持可读性 */
+    .slide.dark [style*="grid-template-columns:1fr 1fr 1fr"]{
+      grid-template-columns:1fr!important;
+      gap:26px 0!important;
+    }
+    .stat-card{gap:8px;padding-top:14px}
+    .stat-card .stat-label{font-size:12px;letter-spacing:.16em}
+    .stat-card .stat-nb,.grid-4 .stat-card .stat-nb,.grid-3 .stat-card .stat-nb{
+      font-size:12vw;
+      line-height:.95;
+    }
+
+    /* 课程：每门课由横排改为三行信息 */
+    .slide.light [style*="align-items:baseline"][style*="gap:2vw"]{
+      flex-direction:column;
+      align-items:flex-start!important;
+      gap:7px!important;
+      padding:14px 0;
+    }
+    .slide.light [style*="font-size:1.4vw"]{font-size:20px!important;line-height:1.45}
+    .slide.light [style*="font-size:.95vw"]{font-size:15px!important;line-height:1.5}
+
+    /* 经历与二维码：由左右双栏改为上下阅读 */
+    .slide.dark>div[style*="gap:4vw"][style*="align-items:center"]{
+      flex-direction:column;
+      align-items:stretch!important;
+      justify-content:center;
+      gap:26px!important;
+    }
+    .slide.dark>div[style*="gap:4vw"][style*="align-items:center"]>.rule.v{
+      width:100%;
+      height:1px;
+      margin:0;
+    }
+    .slide.dark [style*="flex:0 0 34vw"]{
+      flex:0 0 auto!important;
+      width:100%!important;
+      align-items:flex-start!important;
+    }
+    .slide.dark [style*="flex:0 0 34vw"]>div:nth-child(2){align-self:center}
+    .slide.dark [src*="qr-"],
+    .slide.dark [src*="wechat-qr"]{
+      width:72px!important;
+      height:72px!important;
+    }
+    .slide.dark [style*="font-size:1.3vw"]{font-size:18px!important;line-height:1.5}
+    .slide.dark [style*="font-size:.95vw"]{font-size:15px!important;line-height:1.6}
+    .slide.dark [style*="font-size:.85vw"]{font-size:15px!important;line-height:1.8}
+  }
 </style>
 </head>
 <body>
@@ -829,6 +963,7 @@ function toggleOverview(){
 
 addEventListener('keydown',e=>{
   if(e.key==='Escape'){e.preventDefault();toggleOverview();return;}
+  if(window.matchMedia('(max-width:700px)').matches)return;
   if(overviewOn)return;
   if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='ArrowDown'){
     if(window.__pipeAdvance && window.__pipeAdvance()) return;
@@ -842,6 +977,7 @@ addEventListener('keydown',e=>{
 
 let wheelTO=null,wheelAcc=0;
 addEventListener('wheel',e=>{
+  if(window.matchMedia('(max-width:700px)').matches)return;
   wheelAcc+=e.deltaY+e.deltaX;
   if(Math.abs(wheelAcc)>50){
     if(wheelAcc>0 && window.__pipeAdvance && window.__pipeAdvance()){
