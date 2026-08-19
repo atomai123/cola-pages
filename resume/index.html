@@ -554,6 +554,86 @@
     .slide.dark [style*="font-size:1.3vw"]{font-size:18px!important;line-height:1.5}
     .slide.dark [style*="font-size:.95vw"]{font-size:15px!important;line-height:1.6}
     .slide.dark [style*="font-size:.85vw"]{font-size:15px!important;line-height:1.8}
+
+    /* 二次排版：手机端不再把每一节强行撑满一屏，改为自然的长页节奏 */
+    .slide{
+      min-height:auto;
+      padding:38px 22px 46px;
+    }
+    .slide.hero{
+      min-height:100svh;
+      padding-top:24px;
+      padding-bottom:34px;
+    }
+    .slide:not(.hero){border-top:1px solid rgba(127,127,127,.22)}
+    .chrome>div:last-child{display:none}
+    .slide:not(:last-child)>.foot{display:none}
+    .foot>div:last-child{display:none}
+    .slide.light>div[style*="max-width:72vw"],
+    .slide.dark>div[style*="gap:4vw"][style*="align-items:center"]{
+      justify-content:flex-start;
+    }
+    .slide.dark [style*="opacity:.55"],
+    .slide.dark [style*="opacity:.5"]{opacity:.78!important}
+    .slide.light [style*="opacity:.55"]{opacity:.68!important}
+
+    /* 证书改成两列扫读，减少连续长滚动 */
+    .slide.dark [style*="grid-template-columns:1fr 1fr 1fr"]{
+      grid-template-columns:repeat(2,minmax(0,1fr))!important;
+      gap:24px 18px!important;
+    }
+    .stat-card{min-width:0;gap:7px;padding-top:12px}
+    .stat-card .stat-label{font-size:11px;line-height:1.4;letter-spacing:.1em;white-space:nowrap}
+    .stat-card .stat-nb,.grid-4 .stat-card .stat-nb,.grid-3 .stat-card .stat-nb{
+      font-size:8.6vw;
+      line-height:1.05;
+      white-space:normal;
+    }
+    .stat-card .stat-nb .stat-unit{font-size:.46em;line-height:1.15}
+
+    /* 课程列表使用克制的分隔线，不做廉价卡片 */
+    .slide.light [style*="display:flex;flex-direction:column;gap:1.6vh"]{
+      gap:0!important;
+    }
+    .slide.light [style*="align-items:baseline"][style*="gap:2vw"]{
+      border-top:1px solid rgba(var(--ink-rgb),.16);
+      padding:17px 0 15px;
+    }
+    .slide.light [style*="align-items:baseline"][style*="gap:2vw"] + .rule{display:none}
+
+    /* 联系方式：二维码之间留出明确的手指间距 */
+    .slide.dark [style*="flex:0 0 34vw"]>div[style*="display:flex;gap:2vw"]{
+      gap:14px!important;
+    }
+    .slide.dark [src*="qr-"],
+    .slide.dark [src*="wechat-qr"]{
+      width:78px!important;
+      height:78px!important;
+    }
+
+    /* 最后一轮细调：统一安全边距，给文字和二维码留出呼吸感 */
+    .slide{padding-left:24px;padding-right:24px}
+    .slide.light>div[style*="max-width:72vw"]{gap:32px!important}
+    .slide.light [style*="font-size:1.2vw"]{line-height:2!important}
+    .slide.light [style*="align-items:baseline"][style*="gap:2vw"]{
+      gap:9px!important;
+      padding:19px 0 18px;
+    }
+    .slide.light [style*="font-size:1.4vw"]{
+      font-weight:600;
+      line-height:1.5!important;
+    }
+    .slide.light [style*="font-size:.95vw"]{
+      font-size:14px!important;
+      opacity:.72!important;
+    }
+    .slide.dark .h3-zh{font-weight:700}
+    .slide.dark>div[style*="gap:4vw"][style*="align-items:center"]{gap:32px!important}
+    .slide.dark [style*="flex:0 0 34vw"]>div[style*="display:flex;gap:2vw"]{
+      padding:4px 0;
+      gap:16px!important;
+    }
+    .slide.dark [style*="flex:0 0 34vw"]>div:last-child{margin-top:5px}
   }
 </style>
 </head>
