@@ -65,6 +65,7 @@
 
   .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border:1px solid currentColor;opacity:.85}
   .rule{width:100%;height:1px;background:currentColor;opacity:.25;margin:3vh 0}
+  .rule.tight{margin:1.1vh 0}
   .rule.v{width:1px;height:100%;margin:0}
 
   /* ============ 字体规则 ============
@@ -251,6 +252,12 @@
     text-transform:uppercase;
     opacity:.6;
   }
+
+  /* ---------- titles-grid（头衔与身份双栏） ---------- */
+  .titles-grid{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:2.4vh 3.4vw;align-items:start}
+  .t-item{display:flex;flex-direction:column;gap:.4vh;padding-top:1.4vh;margin-top:1.2vh;border-top:1px solid rgba(127,127,127,.28)}
+  .t-item .t-role{font-family:var(--serif-zh);font-weight:600;font-size:max(15px,1.24vw);line-height:1.35}
+  .t-item .t-note{font-family:var(--sans-zh);font-weight:400;font-size:max(12px,.92vw);line-height:1.5;opacity:.58}
 
   /* ---------- stat-card（数据大字报用） ---------- */
   .stat-card{
@@ -513,6 +520,9 @@
     }
     .stat-card{gap:8px;padding-top:14px}
     .stat-card .stat-label{font-size:12px;letter-spacing:.16em}
+    .titles-grid{grid-template-columns:1fr!important;gap:22px!important}
+    .t-item .t-role{font-size:18px!important;line-height:1.45}
+    .t-item .t-note{font-size:15px!important;line-height:1.55;opacity:.66!important}
     .stat-card .stat-nb,.grid-4 .stat-card .stat-nb,.grid-3 .stat-card .stat-nb{
       font-size:12vw;
       line-height:.95;
@@ -714,13 +724,13 @@
 <section class="slide hero dark">
   <div class="chrome">
     <div>个人简历 · Resume</div>
-    <div>01 / 05</div>
+    <div>01 / 06</div>
   </div>
   <div style="flex:1;display:flex;align-items:center;gap:6vw">
     <div style="flex:1;display:flex;flex-direction:column;gap:1.6vh">
       <div class="kicker">原子君 &amp; ATOM</div>
       <div class="display-zh">原子君</div>
-      <div style="font-family:var(--serif-zh);font-size:2vw;opacity:.75;margin-top:.8vh">高校教师 × AI实践者 × 社群组织者</div>
+      <div style="font-family:var(--serif-zh);font-size:2vw;opacity:.75;margin-top:.8vh">高校教师 × AI实践者 × 开源社区负责人</div>
       <div style="font-family:var(--sans-zh);font-size:1.15vw;opacity:.55;margin-top:2vh;line-height:1.8">雅和设计工程学院 · 城乡规划教研室 · AI无限可能工作室</div>
     </div>
     <img src="images/portrait-photo.png" style="width:16vw;height:21vw;object-fit:cover;border-radius:4px;border:1px solid rgba(255,255,255,.12)">
@@ -735,12 +745,12 @@
 <section class="slide light">
   <div class="chrome">
     <div>关于我 · About</div>
-    <div>02 / 05</div>
+    <div>02 / 06</div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh;max-width:72vw">
     <div class="h2-zh">「试出来的人」</div>
     <div style="font-family:var(--sans-zh);font-size:1.2vw;line-height:2;opacity:.78">
-      海口经济学院雅和设计工程学院城乡规划教师，AI无限可能工作室负责人。将AI深度融入5门专业课程，覆盖学生约120人次。从课堂到校外培训，从个人探索到组织线下AI社群——所有事情都是先动手试出来的。
+      海口经济学院雅和设计工程学院城乡规划教师、学院 AI 专项负责人，AI 无限可能工作室发起人，华为云开源社区海南高校负责人。把 AI 深度融入 5 门专业课程，校内 AI 活动累计覆盖 120+ 人次；常态化开展全校教师 AI 培训，带学生在课堂上用 AI 工具做出自己的作品。从课堂到校外大会，从个人探索到组织线下 AI 社群——所有事情都是先动手试出来的。
     </div>
     <div class="rule"></div>
     <div style="display:flex;gap:6vw">
@@ -764,14 +774,52 @@
   </div>
 </section>
 
-<!-- 3. 证书 -->
+<!-- 3. 头衔与身份 -->
+<section class="slide light">
+  <div class="chrome">
+    <div>头衔与身份 · Titles</div>
+    <div>03 / 06</div>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:3vh">
+    <div class="h3-zh">12 个头衔与身份</div>
+    <div class="meta" style="margin-top:-1vh">从校内到社会侧 · 按用途取用</div>
+    <div class="titles-grid">
+      <div>
+        <div class="kicker">校内身份</div>
+        <div class="t-item"><div class="t-role">雅和设计工程学院 城乡规划专业教师</div><div class="t-note">2025.03 入职 · AI 融合课程</div></div>
+        <div class="t-item"><div class="t-role">AI 教学研究中心 特邀 AI 讲师</div><div class="t-note">2026.06.19 正式颁发聘书</div></div>
+        <div class="t-item"><div class="t-role">学院 AI 专项负责人</div><div class="t-note">学院与学校层面 AI 教学推进</div></div>
+        <div class="t-item"><div class="t-role">AI 无限可能工作室 发起人 / 主持人</div><div class="t-note">现品牌「椰客松 CocoHack」</div></div>
+      </div>
+      <div>
+        <div class="kicker">行业与社区身份</div>
+        <div class="t-item"><div class="t-role">华为云开源社区 海南高校负责人</div><div class="t-note">推动开源技术在本省高校落地</div></div>
+        <div class="t-item"><div class="t-role">华为云开发者社区 组织核心贡献者</div><div class="t-note">2026.07 获认证</div></div>
+        <div class="t-item"><div class="t-role">Datawhale 高校运营 FDE</div><div class="t-note">2026 暑期挂职 · 高校生态运营</div></div>
+        <div class="t-item"><div class="t-role">WaytoAGI 核心成员</div><div class="t-note">全国社群 + 海口本地社群</div></div>
+        <div class="t-item"><div class="t-role">海口 AI 开源学习社区 运营者</div><div class="t-note">高校 · 企业 · 开源社区的地面节点</div></div>
+      </div>
+      <div>
+        <div class="kicker">社会与自媒体身份</div>
+        <div class="t-item"><div class="t-role">琼山区团委 青年夜校 AI 主讲老师</div><div class="t-note">面向基层团干的 AI 办公培训</div></div>
+        <div class="t-item"><div class="t-role">学习强国 AI 频道 直播讲师</div><div class="t-note">单场观看超 5000 人</div></div>
+        <div class="t-item"><div class="t-role">公众号 / 视频号 主理人</div><div class="t-note">原子君的AI工作坊 · AI实战笔记</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>校内 4 项 · 行业与社区 5 项 · 社会与自媒体 3 项</div>
+    <div>— · —</div>
+  </div></section>
+
+<!-- 4. 证书 -->
 <section class="slide dark">
   <div class="chrome">
     <div>专业认证 · Certifications</div>
-    <div>03 / 05</div>
+    <div>04 / 06</div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:3vh">
-    <div class="h3-zh">5 项专业认证</div>
+    <div class="h3-zh">5 项行业认证</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3vh 2vw">
       <div class="stat-card">
         <div class="stat-label">阿里达摩院</div>
@@ -790,17 +838,13 @@
         <div class="stat-nb">Copilot<span class="stat-unit">认证</span></div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">海经院 教发中心</div>
-        <div class="stat-nb">特邀<span class="stat-unit">AI讲师</span></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">海口市琼山区团委</div>
-        <div class="stat-nb">青年夜校<span class="stat-unit">AI主讲老师</span></div>
+        <div class="stat-label">华为云开发者社区</div>
+        <div class="stat-nb">组织<span class="stat-unit">核心贡献者</span></div>
       </div>
     </div>
   </div>
   <div class="foot">
-    <div>4项行业认证 + 1项校内聘书</div>
+    <div>5 项行业认证</div>
     <div>— · —</div>
   </div>
 </section>
@@ -809,7 +853,7 @@
 <section class="slide light">
   <div class="chrome">
     <div>AI融合课程 · Courses</div>
-    <div>04 / 05</div>
+    <div>05 / 06</div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.4vh">
     <div class="h3-zh">2025-2026 学期 · 5门AI融合课程</div>
@@ -855,28 +899,46 @@
 <section class="slide dark">
   <div class="chrome">
     <div>实践经历 · Experience</div>
-    <div>05 / 05</div>
+    <div>06 / 06</div>
   </div>
   <div style="flex:1;display:flex;gap:4vw;align-items:center">
     <div style="flex:1;display:flex;flex-direction:column;gap:2.4vh">
-      <div class="h3-zh">校外培训与社群</div>
-      <div style="display:flex;flex-direction:column;gap:1.6vh">
+      <div class="h3-zh">社会活动与公开分享</div>
+      <div style="display:flex;flex-direction:column;gap:.9vh">
+        <div>
+          <div class="kicker">2026.10.12</div>
+          <div style="font-family:var(--serif-zh);font-size:1.3vw">雅和雅集「FDE 实战思考分享」· 分享嘉宾</div>
+          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">主讲《FDE 进企业与学校的经验分享》</div>
+        </div>
+        <div class="rule tight"></div>
+        <div>
+          <div class="kicker">2026.07.11</div>
+          <div style="font-family:var(--serif-zh);font-size:1.3vw">秒哒 AI 落地大会 海口站 · 承办与落地执行</div>
+          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">全国 18 城联动 · 40 余人到场 · 开发挑战赛同期启动</div>
+        </div>
+        <div class="rule tight"></div>
+        <div>
+          <div class="kicker">2026 暑期</div>
+          <div style="font-family:var(--serif-zh);font-size:1.3vw">Datawhale 高校生态运营 · FDE</div>
+          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">高校访谈与对接 · FDE 案例与角色画像库沉淀</div>
+        </div>
+        <div class="rule tight"></div>
         <div>
           <div class="kicker">2026.06.19</div>
-          <div style="font-family:var(--serif-zh);font-size:1.3vw">Datawhale海口站 · 主持人</div>
-          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">40人到场 · 4小时OPC专场 · 9份作品提交</div>
+          <div style="font-family:var(--serif-zh);font-size:1.3vw">Datawhale AI+X 创造节 海口站 · 主持人</div>
+          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">全场主持 4 小时 · 6 位嘉宾</div>
         </div>
-        <div class="rule"></div>
+        <div class="rule tight"></div>
         <div>
           <div class="kicker">2026.06.17</div>
           <div style="font-family:var(--serif-zh);font-size:1.3vw">琼山区团委青年夜校 · AI主讲老师</div>
-          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">90分钟 · 主讲 · AI赋能办公：打造你的专属智能体</div>
+          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">90 分钟 · AI赋能办公：打造你的专属智能体</div>
         </div>
-        <div class="rule"></div>
+        <div class="rule tight"></div>
         <div>
           <div class="kicker">持续</div>
-          <div style="font-family:var(--serif-zh);font-size:1.3vw">WaytoAGI & Datawhale 海口社区</div>
-          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">核心成员 · 线下活动组织 · AI工具推广</div>
+          <div style="font-family:var(--serif-zh);font-size:1.3vw">WaytoAGI · 华为云开源社区 · 海口 AI 社区</div>
+          <div style="font-family:var(--sans-zh);font-size:.95vw;opacity:.55">核心成员 / 高校负责人 · 线下活动组织 · 开源与工具推广</div>
         </div>
       </div>
     </div>
