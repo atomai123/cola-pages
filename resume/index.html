@@ -259,6 +259,12 @@
   .t-item .t-role{font-family:var(--serif-zh);font-weight:600;font-size:max(15px,1.24vw);line-height:1.35}
   .t-item .t-note{font-family:var(--sans-zh);font-weight:400;font-size:max(12px,.92vw);line-height:1.5;opacity:.58}
 
+  /* ---------- photo-grid（活动掠影） ---------- */
+  .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.6vh 3vw;align-items:start}
+  .ph{display:flex;flex-direction:column;gap:.8vh}
+  .ph img{width:100%;height:28vh;object-fit:cover;border-radius:3px;border:1px solid rgba(127,127,127,.22);display:block}
+  .ph .cap{font-family:var(--mono);font-size:max(10px,.72vw);letter-spacing:.12em;opacity:.72;line-height:1.5}
+
   /* ---------- stat-card（数据大字报用） ---------- */
   .stat-card{
     display:flex;
@@ -523,6 +529,9 @@
     .titles-grid{grid-template-columns:1fr!important;gap:22px!important}
     .t-item .t-role{font-size:18px!important;line-height:1.45}
     .t-item .t-note{font-size:15px!important;line-height:1.55;opacity:.66!important}
+    .photo-grid{grid-template-columns:1fr!important;gap:18px!important}
+    .ph img{height:auto!important;aspect-ratio:4/3}
+    .ph .cap{font-size:12px!important;line-height:1.5}
     .stat-card .stat-nb,.grid-4 .stat-card .stat-nb,.grid-3 .stat-card .stat-nb{
       font-size:12vw;
       line-height:.95;
@@ -724,7 +733,7 @@
 <section class="slide hero dark">
   <div class="chrome">
     <div>个人简历 · Resume</div>
-    <div>01 / 06</div>
+    <div>01 / 07</div>
   </div>
   <div style="flex:1;display:flex;align-items:center;gap:6vw">
     <div style="flex:1;display:flex;flex-direction:column;gap:1.6vh">
@@ -745,7 +754,7 @@
 <section class="slide light">
   <div class="chrome">
     <div>关于我 · About</div>
-    <div>02 / 06</div>
+    <div>02 / 07</div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh;max-width:72vw">
     <div class="h2-zh">「试出来的人」</div>
@@ -778,7 +787,7 @@
 <section class="slide light">
   <div class="chrome">
     <div>头衔与身份 · Titles</div>
-    <div>03 / 06</div>
+    <div>03 / 07</div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:3vh">
     <div class="h3-zh">12 个头衔与身份</div>
@@ -816,7 +825,7 @@
 <section class="slide dark">
   <div class="chrome">
     <div>专业认证 · Certifications</div>
-    <div>04 / 06</div>
+    <div>04 / 07</div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:3vh">
     <div class="h3-zh">5 项行业认证</div>
@@ -853,7 +862,7 @@
 <section class="slide light">
   <div class="chrome">
     <div>AI融合课程 · Courses</div>
-    <div>05 / 06</div>
+    <div>05 / 07</div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.4vh">
     <div class="h3-zh">2025-2026 学期 · 5门AI融合课程</div>
@@ -899,7 +908,7 @@
 <section class="slide dark">
   <div class="chrome">
     <div>实践经历 · Experience</div>
-    <div>06 / 06</div>
+    <div>06 / 07</div>
   </div>
   <div style="flex:1;display:flex;gap:4vw;align-items:center">
     <div style="flex:1;display:flex;flex-direction:column;gap:2.4vh">
@@ -967,6 +976,39 @@
   </div>
   <div class="foot">
     <div>海口经济学院 · 雅和设计工程学院 · 城乡规划教研室</div>
+    <div>— · —</div>
+  </div>
+</section>
+
+<!-- 7. 活动掠影 -->
+<section class="slide light" style="padding-bottom:15vh">
+  <div class="chrome">
+    <div>活动掠影 · Field Notes</div>
+    <div>07 / 07</div>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:3vh">
+    <div class="h3-zh">都是真实办过的现场</div>
+    <div class="photo-grid">
+      <div class="ph">
+        <img src="images/act-miaoda.jpg" alt="秒哒 AI 落地大会海口站">
+        <div class="cap">2026.07.11 · 秒哒 AI 落地大会 海口站 · 全国 18 城联动</div>
+      </div>
+      <div class="ph">
+        <img src="images/act-workshop.jpg" alt="首期教师 AI 实操工作坊">
+        <div class="cap">2026.09.15 · 首期教师 AI 实操工作坊</div>
+      </div>
+      <div class="ph">
+        <img src="images/act-newbie.jpg" alt="AI 新手村 高校行">
+        <div class="cap">2026.10.23 · AI 新手村 · AI+X 高校行第 8 期</div>
+      </div>
+      <div class="ph">
+        <img src="images/act-huawei.jpg" alt="华为云开发训练营">
+        <div class="cap">2026.10.29 · 华为云开发训练营 · HCDG 海南</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>教学 · 培训 · 社团 · 产业合作</div>
     <div>— · —</div>
   </div>
 </section>
